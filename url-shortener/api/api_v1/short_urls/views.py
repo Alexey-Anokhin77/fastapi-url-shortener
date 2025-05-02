@@ -12,7 +12,7 @@ from schemas.short_url import (
     ShortUrlCreate,
 )
 
-from .crud import SHORT_URLS
+from .crud import storage
 from .dependencies import (
     prefetch_short_urls,
 )
@@ -28,7 +28,7 @@ router = APIRouter(
     response_model=list[ShortUrl],
 )
 def read_short_urls_list():
-    return SHORT_URLS
+    return storage.get()
 
 
 # Создаем эндпоинт запроса
@@ -39,10 +39,8 @@ def read_short_urls_list():
 )
 def create_short_url(
     short_url_create: ShortUrlCreate,
-):
-    return ShortUrl(
-        **short_url_create.model_dump(),
-    )
+) -> ShortUrl:
+    return storage.create(short_url_create)
 
 
 @router.get(
