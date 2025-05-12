@@ -8,6 +8,7 @@ from api.api_v1.short_urls.dependencies import prefetch_short_urls
 from schemas.short_url import (
     ShortUrl,
     ShortUrlUpdate,
+    ShortUrlPartialUpdate,
 )
 
 router = APIRouter(
@@ -52,6 +53,20 @@ def update_short_urls_details(
     short_url_in: ShortUrlUpdate,
 ):
     return storage.update(
+        short_url=url,
+        short_url_in=short_url_in,
+    )
+
+
+@router.patch(
+    "/",
+    response_model=ShortUrl,
+)
+def update_short_urls_details_partial(
+    url: ShortUrlBySlug,
+    short_url_in: ShortUrlPartialUpdate,
+) -> ShortUrl:
+    return storage.partial_update(
         short_url=url,
         short_url_in=short_url_in,
     )
