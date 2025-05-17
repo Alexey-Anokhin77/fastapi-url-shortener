@@ -1,7 +1,9 @@
 from fastapi import (
     APIRouter,
     status,
+    BackgroundTasks,
 )
+from starlette.background import BackgroundTask
 
 from schemas.short_url import (
     ShortUrl,
@@ -33,5 +35,7 @@ def read_short_urls_list() -> list[ShortUrl]:
 )
 def create_short_url(
     short_url_create: ShortUrlCreate,
+    background_task: BackgroundTasks,
 ) -> ShortUrl:
+    background_task.add_task(storage.save_state)
     return storage.create(short_url_create)
