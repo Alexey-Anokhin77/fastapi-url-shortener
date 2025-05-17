@@ -19,6 +19,9 @@ class ShortUrlsStorage(BaseModel):
 
     # Метод сохранения данных локально на жесткий диск
     def save_state(self) -> None:
+        for _ in range(30_000):
+            SHORT_URLS_STORAGE_FILEPATH.write_text(self.model_dump_json(indent=2))
+
         SHORT_URLS_STORAGE_FILEPATH.write_text(self.model_dump_json(indent=2))
         log.info("Saved short urls to storage file.")
 
@@ -58,7 +61,7 @@ class ShortUrlsStorage(BaseModel):
             **short_url_in.model_dump(),
         )
         self.slug_to_short_url[short_url.slug] = short_url
-        self.save_state()
+        log.info("Created short url %s")
         return short_url
 
     def delete_by_slug(self, slug: str) -> None:
