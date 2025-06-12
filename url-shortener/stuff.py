@@ -2,7 +2,7 @@ from redis import Redis
 
 from core import config
 
-r = Redis(
+redis = Redis(
     host=config.REDIS_HOST,
     port=config.REDIS_PORT,
     db=config.REDIS_DB,
@@ -11,20 +11,20 @@ r = Redis(
 
 
 def main():
-    print(r.ping())
-    r.set("name", "Alexey")
-    r.set("foo", "bar")
-    r.set("number", "42")
-    print("name", r.get("name"))
+    print(redis.ping())
+    redis.set("name", "Alexey")
+    redis.set("foo", "bar")
+    redis.set("number", "42")
+    print("name", redis.get("name"))
     print(
         [
-            r.get("foo"),
-            r.get("number"),
-            r.get("spam"),
+            redis.get("foo"),
+            redis.get("number"),
+            redis.get("spam"),
         ]
     )
-    r.delete("name")
-    print("name", r.get("name"))
+    redis.delete("name")
+    print("name", redis.get("name"))
 
 
 if __name__ == "__main__":
