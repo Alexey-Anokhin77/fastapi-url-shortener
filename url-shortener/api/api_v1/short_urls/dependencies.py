@@ -20,7 +20,6 @@ from starlette import status
 
 from core.config import (
     USERS_DB,
-    REDIS_TOKENS_SET_NAME,
 )
 from .crud import storage
 from schemas.short_url import ShortUrl
@@ -80,8 +79,7 @@ def save_storage_state(
 def validate_api_token(
     api_token: HTTPAuthorizationCredentials,
 ):
-    if redis_tokens.sismember(
-        REDIS_TOKENS_SET_NAME,
+    if redis_tokens.token_exists(
         api_token.credentials,
     ):
         return
