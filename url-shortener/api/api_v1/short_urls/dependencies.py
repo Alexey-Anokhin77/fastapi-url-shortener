@@ -18,13 +18,13 @@ from fastapi.security import (
 from starlette import status
 
 
-from core.config import (
-    USERS_DB,
-)
 from .crud import storage
 from schemas.short_url import ShortUrl
 
-from .redis import redis_tokens
+from api.api_v1.auth.services import (
+    redis_tokens,
+    redis_users,
+)
 
 log = logging.getLogger(__name__)
 
@@ -111,10 +111,9 @@ def api_token_required_for_unsafe_methods(
 def validate_basic_auth(
     credentials: HTTPBasicCredentials | None,
 ):
-    if (
-        credentials
-        and credentials.username in USERS_DB
-        and USERS_DB[credentials.username] == credentials.password
+    if credentials and redis_users.validate_user_password(
+        username=credentials.username,
+        password=credentials.password,
     ):
         return
 
