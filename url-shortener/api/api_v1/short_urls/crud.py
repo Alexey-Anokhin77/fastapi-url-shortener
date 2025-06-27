@@ -1,7 +1,9 @@
 import logging
 
 from pydantic import BaseModel, ValidationError
+from redis import Redis
 
+from core import config
 from core.config import SHORT_URLS_STORAGE_FILEPATH
 from schemas.short_url import (
     ShortUrl,
@@ -11,6 +13,14 @@ from schemas.short_url import (
 )
 
 log = logging.getLogger(__name__)
+
+
+redis = Redis(
+    host=config.REDIS_HOST,
+    port=config.REDIS_PORT,
+    db=config.REDIS_DB_SHORT_URLS,
+    decode_responses=True,
+)
 
 
 # Создаем класс со словарем, в котором будем вытаскивать ссылку по slug-ключу
@@ -60,7 +70,11 @@ class ShortUrlsStorage(BaseModel):
         short_url = ShortUrl(
             **short_url_in.model_dump(),
         )
-        self.slug_to_short_url[short_url.slug] = short_url
+        redis.hset(
+            name=config.REDIS_SHORT_URLS_HASH_NAME,
+            key=short_url.slug,
+            value=short_url.model_dump_json(),
+        )
         log.info("Created short url %s")
         return short_url
 
