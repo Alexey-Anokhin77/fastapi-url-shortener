@@ -59,9 +59,19 @@ class ShortUrlsStorage(BaseModel):
         )
         log.warning("Recovered data from storage file.")
 
+    def save_short_url(self, short_url: ShortUrl) -> None:
+        redis.hset(
+            name=config.REDIS_SHORT_URLS_HASH_NAME,
+            key=short_url.slug,
+            value=short_url.model_dump_json(),
+        )
+
     # Метод получения slug ключей
     def get(self) -> list[ShortUrl]:
-        return list(self.slug_to_short_url.values())
+        return [
+            ShortUrl.model_validate_json(value)
+            for value in redis.hvals(name=config.REDIS_SHORT_URLS_HASH_NAME)
+        ]
 
     def get_by_slug(self, slug: str) -> ShortUrl | None:
         if data := redis.hget(
@@ -75,16 +85,12 @@ class ShortUrlsStorage(BaseModel):
         short_url = ShortUrl(
             **short_url_in.model_dump(),
         )
-        redis.hset(
-            name=config.REDIS_SHORT_URLS_HASH_NAME,
-            key=short_url.slug,
-            value=short_url.model_dump_json(),
-        )
+        self.save_short_url(short_url)
         log.info("Created short url %s")
         return short_url
 
     def delete_by_slug(self, slug: str) -> None:
-        self.slug_to_short_url.pop(slug, None)
+        redis.hdel(config.REDIS_SHORT_URLS_HASH_NAME, slug)
 
     def delete(self, short_url: ShortUrl) -> None:
         self.delete_by_slug(slug=short_url.slug)
@@ -96,6 +102,7 @@ class ShortUrlsStorage(BaseModel):
     ) -> ShortUrl:
         for field_name, value in short_url_in:
             setattr(short_url, field_name, value)
+        self.save_short_url(short_url)
         return short_url
 
     def partial_update(
@@ -105,6 +112,7 @@ class ShortUrlsStorage(BaseModel):
     ):
         for field_name, value in short_url_in.model_dump(exclude_unset=True).items():
             setattr(short_url, field_name, value)
+        self.save_short_url(short_url)
         return short_url
 
 
