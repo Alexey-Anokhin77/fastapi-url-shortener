@@ -1,10 +1,9 @@
 import logging
 
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 from redis import Redis
 
 from core import config
-from core.config import SHORT_URLS_STORAGE_FILEPATH
 from schemas.short_url import (
     ShortUrl,
     ShortUrlCreate,

@@ -2,6 +2,7 @@ from fastapi import (
     APIRouter,
     status,
     Depends,
+    HTTPException,
 )
 
 from api.api_v1.short_urls.dependencies import (
@@ -51,8 +52,26 @@ def read_short_urls_list() -> list[ShortUrl]:
     "/",
     response_model=ShortUrlRead,
     status_code=status.HTTP_201_CREATED,
+    responses={
+        status.HTTP_409_CONFLICT: {
+            "description": "Conflict. Short URL with this slug already exists.",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "detail": "Short URL with slug='example' already exists"
+                    },
+                },
+            },
+        },
+    },
 )
 def create_short_url(
     short_url_create: ShortUrlCreate,
 ) -> ShortUrl:
-    return storage.create(short_url_create)
+    if not storage.get_by_slug(short_url_create.slug):
+        return storage.create(short_url_create)
+
+    raise HTTPException(
+        status_code=status.HTTP_409_CONFLICT,
+        detail=f"Short URL with slug={short_url_create.slug!r} already exist",
+    )
