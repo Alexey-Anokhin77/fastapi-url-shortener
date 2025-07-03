@@ -5,8 +5,6 @@ from fastapi import (
 )
 
 from api.api_v1.short_urls.dependencies import (
-    save_storage_state,
-    api_token_required_for_unsafe_methods,
     api_token_or_user_basic_auth_required__for_unsafe_methods,
 )
 from schemas.short_url import (
@@ -21,7 +19,6 @@ router = APIRouter(
     prefix="/short-urls",
     tags=["Short URLs"],
     dependencies=[
-        Depends(save_storage_state),
         # Depends(api_token_required_for_unsafe_methods),
         Depends(api_token_or_user_basic_auth_required__for_unsafe_methods),
     ],

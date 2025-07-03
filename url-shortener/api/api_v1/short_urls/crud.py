@@ -25,39 +25,6 @@ redis = Redis(
 
 # Создаем класс со словарем, в котором будем вытаскивать ссылку по slug-ключу
 class ShortUrlsStorage(BaseModel):
-    slug_to_short_url: dict[str, ShortUrl] = {}
-
-    # Метод сохранения данных локально на жесткий диск
-    def save_state(self) -> None:
-        for _ in range(30_000):
-            SHORT_URLS_STORAGE_FILEPATH.write_text(self.model_dump_json(indent=2))
-
-        SHORT_URLS_STORAGE_FILEPATH.write_text(self.model_dump_json(indent=2))
-        log.info("Saved short urls to storage file.")
-
-    # Кастомный инициализатор на проверку существования и чтения файла
-    @classmethod
-    def from_state(cls) -> "ShortUrlsStorage":
-        if not SHORT_URLS_STORAGE_FILEPATH.exists():
-            log.info("Short urls to storage file doesn't exist!")
-            return ShortUrlsStorage()
-        return cls.model_validate_json(SHORT_URLS_STORAGE_FILEPATH.read_text())
-
-    def init_storage_from_state(self) -> None:
-        try:
-            data = ShortUrlsStorage.from_state()
-        except ValidationError:
-            self.save_state()
-            log.warning("Rewritten storage file due to validation error.")
-            return
-
-        # обновление свойства напрямую
-        # если будут новые свойства,
-        # то их тоже надо обновить.
-        self.slug_to_short_url.update(
-            data.slug_to_short_url,
-        )
-        log.warning("Recovered data from storage file.")
 
     def save_short_url(self, short_url: ShortUrl) -> None:
         redis.hset(
