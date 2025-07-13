@@ -49,3 +49,9 @@ class AbstractTokensHelpers(ABC):
         Возвращает список всех токенов
         :return: list[str] - список строковых токенов
         """
+
+    @abstractmethod
+    def delete_token(self, token: str) -> None:
+        """
+        Delete token from storage.
+        """
