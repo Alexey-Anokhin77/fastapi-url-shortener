@@ -55,7 +55,7 @@ def read_short_urls_details(
 def update_short_urls_details(
     url: ShortUrlBySlug,
     short_url_in: ShortUrlUpdate,
-):
+) -> ShortUrl:
     return storage.update(
         short_url=url,
         short_url_in=short_url_in,
