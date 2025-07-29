@@ -1,4 +1,3 @@
-from httpx import delete
 from redis import Redis
 
 from api.api_v1.auth.services.tokens_helper import AbstractTokensHelpers

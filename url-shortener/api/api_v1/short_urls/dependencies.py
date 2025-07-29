@@ -6,24 +6,21 @@ from fastapi import (
     Request,
 )
 from fastapi.params import Depends
-
 from fastapi.security import (
     HTTPAuthorizationCredentials,
-    HTTPBearer,
     HTTPBasic,
     HTTPBasicCredentials,
+    HTTPBearer,
 )
-
 from starlette import status
-
-
-from .crud import storage
-from schemas.short_url import ShortUrl
 
 from api.api_v1.auth.services import (
     redis_tokens,
     redis_users,
 )
+from schemas.short_url import ShortUrl
+
+from .crud import storage
 
 log = logging.getLogger(__name__)
 

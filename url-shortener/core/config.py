@@ -1,5 +1,4 @@
 import logging
-
 from pathlib import Path
 
 # C:\Users\Alexey\Desktop\Python\Stepic_Suren\fastapi-url-shortener\url-shortener\core\config.py
