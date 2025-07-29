@@ -1,4 +1,3 @@
-from typing import reveal_type
 
 from redis import Redis
 
@@ -17,12 +16,6 @@ def add(a: int, b: int) -> int:
 
 
 def main() -> None:
-    a = 1
-    b = 2
-    c = add(a, b)
-    print(c)
-    print("type c:", type(c))
-    reveal_type(c)
 
     print(redis.ping())
     redis.set("name", "Alexey")
@@ -38,7 +31,3 @@ def main() -> None:
     )
     redis.delete("name")
     print("name", redis.get("name"))
-
-
-if __name__ == "__main__":
-    main()
