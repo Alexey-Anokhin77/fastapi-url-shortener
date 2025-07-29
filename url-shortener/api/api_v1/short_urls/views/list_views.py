@@ -73,4 +73,4 @@ def create_short_url(
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail=f"Short URL with slug={short_url_create.slug!r} already exist",
-        )
+        ) from None
