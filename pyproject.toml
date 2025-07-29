@@ -94,10 +94,18 @@ select = [
     "BLE", # flake8-blind-except (BLE)
     "FBT",  # flake8-boolean-trap (FBT)
     "B",  # flake8-bugbear (B)
-    "C4", # flake8-comprehensions (C4)
+    "C4", # flake8-comprehensions (C4),
+    "DTZ", # flake8-datetimez (DTZ)
+    "T10", # flake8-debugger (T10)
+
 
 ]
 ignore = [
+    "S101", # S101	assert	Use of assert detected
+    "RUF001", # ambiguous-unicode-character-string
+    "RUF002", # ambiguous-unicode-character-docstring
+    "RUF003", # ambiguous-unicode-character-comment
+    "TC006", # runtime-cast-value
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
