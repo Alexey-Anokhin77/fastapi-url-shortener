@@ -122,6 +122,8 @@ select = [
     "PERF", # Perflint (PERF)
     "E", # pycodestyle (E)
     "W", # pycodestyle (W)
+    # "DOC", # pydoclint (DOC)
+    # "D", # pydocstyle (D)
 
 
 
