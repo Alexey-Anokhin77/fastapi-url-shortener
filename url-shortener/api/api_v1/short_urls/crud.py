@@ -1,6 +1,6 @@
 __all__ = (
-    "storage",
     "ShortUrlAlreadyExistsError",
+    "storage",
 )
 
 import logging
