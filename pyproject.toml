@@ -115,6 +115,10 @@ select = [
     "SLOT", # flake8-slots (SLOT)
     "TC", # flake8-type-checking (TC)
     "ARG", # flake8-unused-arguments (ARG)
+    "PTH", # flake8-use-pathlib (PTH)
+    "FLY", # flynt (FLY)
+    "C90", # mccabe (C90)
+    "N", # pep8-naming (N)
 
 
 
