@@ -110,6 +110,11 @@ select = [
     "Q", # flake8-quotes (Q)
     "RSE", # flake8-raise (RSE)
     "RET", # flake8-return (RET)
+    "SLF", # flake8-self (SLF)
+    "SIM", # flake8-simplify (SIM)
+    "SLOT", # flake8-slots (SLOT)
+    "TC", # flake8-type-checking (TC)
+    "ARG", # flake8-unused-arguments (ARG)
 
 
 
