@@ -124,6 +124,16 @@ select = [
     "W", # pycodestyle (W)
     # "DOC", # pydoclint (DOC)
     # "D", # pydocstyle (D)
+    "PGH", # pygrep-hooks (PGH)
+    "PLC", # Convention (PLC)
+    "PLE", # Error (PLE)
+    "PLR", # Refactor (PLR)
+    "PLW", # Warning (PLW)
+    "UP", # pyupgrade (UP)
+    "FURB", # refurb (FURB)
+    "RUF", # Ruff-specific rules (RUF)
+
+
 
 
 
