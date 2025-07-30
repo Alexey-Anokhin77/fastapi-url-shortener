@@ -5,7 +5,9 @@ from fastapi import FastAPI
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncIterator[None]:  # noqa: ARG001
+async def lifespan(
+    app: FastAPI,  # noqa: ARG001
+) -> AsyncIterator[None]:
     # ставим эту функцию на паузу на время работы приложения
     yield
     # выполняем завершение работы,
