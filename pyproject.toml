@@ -132,6 +132,7 @@ select = [
     "UP", # pyupgrade (UP)
     "FURB", # refurb (FURB)
     "RUF", # Ruff-specific rules (RUF)
+    "TRY", # tryceratops (TRY)
 
 
 
