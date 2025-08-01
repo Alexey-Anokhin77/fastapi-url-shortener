@@ -15,8 +15,9 @@ dependencies = [
 [dependency-groups]
 dev = [
     "mypy>=1.16.1",
-#    "types-redis>=4.6.0.20240325",
-#    "pydantic-mypy>=0.1.0",
+    #    "types-redis>=4.6.0.20240325",
+    #    "pydantic-mypy>=0.1.0",
+    "pre-commit>=4.2.0",
 ]
 
 # mypy settings
@@ -155,6 +156,3 @@ ignore = [
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
 unfixable = []
-
-
-
