@@ -152,6 +152,7 @@ ignore = [
 "stuff.py" = [
     "T20", # flake8-print (T20)
 ]
+"url-shortener/testing/**/*.py" = ["S311"]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
