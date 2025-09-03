@@ -8,7 +8,6 @@ dependencies = [
     "fastapi[standard]>=0.115.12",
     "pydantic>=2.11.3",
     "redis[hiredis]>=6.2.0",
-    "ruff>=0.12.5",
     "typer>=0.15.2",
 ]
 
@@ -19,6 +18,8 @@ dev = [
     #    "types-redis>=4.6.0.20240325",
     #    "pydantic-mypy>=0.1.0",
     "pre-commit>=4.2.0",
+    "pytest>=8.4.1",
+    "ruff>=0.12.5",
 ]
 
 # mypy settings
