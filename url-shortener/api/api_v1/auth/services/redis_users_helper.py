@@ -22,7 +22,10 @@ class RedisUsersHelper(AbstractUsersHelpers):
         self,
         username: str,
     ) -> str | None:
-        return self.redis.get(username)
+        result = self.redis.get(username)
+        if result is None:
+            return None
+        return str(result)
 
 
 redis_users = RedisUsersHelper(

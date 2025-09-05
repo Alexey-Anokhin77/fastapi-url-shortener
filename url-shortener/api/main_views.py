@@ -9,7 +9,7 @@ router = APIRouter()
 @router.get("/")
 def read_root(
     request: Request,
-    name: str = "World",
+    name: str = "World!",
 ) -> dict[str, str]:
     docs_url = request.url.replace(
         path="/docs",
