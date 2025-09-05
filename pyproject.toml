@@ -14,6 +14,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "coverage>=7.10.6",
+    "httpx>=0.28.1",
     "mypy>=1.16.1",
     #    "types-redis>=4.6.0.20240325",
     #    "pydantic-mypy>=0.1.0",
