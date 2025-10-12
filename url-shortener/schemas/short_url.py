@@ -6,9 +6,12 @@ from pydantic import (
     BaseModel,
 )
 
+DESCRIPTION_MAX_LENGTH = 200
+
+
 DescriptionString = Annotated[
     str,
-    MaxLen(200),
+    MaxLen(DESCRIPTION_MAX_LENGTH),
 ]
 
 
