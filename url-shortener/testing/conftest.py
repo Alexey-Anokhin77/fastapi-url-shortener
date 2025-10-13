@@ -8,9 +8,12 @@ import pytest
 from api.api_v1.short_urls.crud import storage
 from schemas.short_url import ShortUrl, ShortUrlCreate
 
-if getenv("TESTING") != "1":
-    msg = "Environment is not ready for testing"
-    pytest.exit(msg)
+
+@pytest.fixture(scope="session", autouse=True)
+def check_testing_env() -> None:
+    if getenv("TESTING") != "1":
+        msg = "Environment is not ready for testing"
+        pytest.exit(msg)
 
 
 def build_short_url_create(
