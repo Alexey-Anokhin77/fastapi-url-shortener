@@ -11,6 +11,8 @@ from main import app
 from schemas.short_url import ShortUrl, ShortUrlCreate
 from testing.conftest import build_short_url_create_random_slug
 
+pytestmark = pytest.mark.apitest
+
 
 class TestCreateInvalid:
     @pytest.fixture(

@@ -9,6 +9,7 @@ from schemas.short_url import ShortUrl
 from testing.conftest import create_short_url
 
 
+@pytest.mark.apitest
 @pytest.fixture(
     params=[
         "some-slug",
@@ -21,6 +22,7 @@ def short_url(request: SubRequest) -> ShortUrl:
     return create_short_url(request.param)
 
 
+@pytest.mark.apitest
 def test_delete(
     short_url: ShortUrl,
     auth_client: TestClient,

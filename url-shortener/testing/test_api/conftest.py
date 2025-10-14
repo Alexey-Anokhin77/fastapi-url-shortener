@@ -7,12 +7,14 @@ from api.api_v1.auth.services import redis_tokens
 from main import app
 
 
+@pytest.mark.apitest
 @pytest.fixture()
 def client() -> Generator[TestClient]:
     with TestClient(app) as client:
         yield client
 
 
+@pytest.mark.apitest
 @pytest.fixture(scope="module")
 def auth_token() -> Generator[str]:
     token = redis_tokens.generate_and_save_token()
@@ -20,6 +22,7 @@ def auth_token() -> Generator[str]:
     redis_tokens.delete_token(token)
 
 
+@pytest.mark.apitest
 @pytest.fixture(scope="module")
 def auth_client(
     auth_token: str,
