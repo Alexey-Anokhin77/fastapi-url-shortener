@@ -84,3 +84,15 @@ def delete_short_url(
     url: ShortUrlBySlug,
 ) -> None:
     storage.delete(short_url=url)
+
+
+@router.post(
+    "/transfer/",
+)
+def transfer_short_url(
+    # 1 / 0
+    # url: ShortUrlBySlug,
+) -> dict[str, str]:
+    # начинаем что-то делать...
+    # raise NotImplementedError
+    return {"Result": "work in progress"}
