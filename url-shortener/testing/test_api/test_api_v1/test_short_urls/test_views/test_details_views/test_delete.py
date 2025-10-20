@@ -8,8 +8,9 @@ from main import app
 from schemas.short_url import ShortUrl
 from testing.conftest import create_short_url
 
+pytestmark = pytest.mark.apitest
 
-@pytest.mark.apitest
+
 @pytest.fixture(
     params=[
         "some-slug",
