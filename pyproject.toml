@@ -153,18 +153,17 @@ select = [
     "FURB", # refurb (FURB)
     "RUF", # Ruff-specific rules (RUF)
     "TRY", # tryceratops (TRY)
-
-
-
-
-
+    # Only ignore variables named "_".
 ]
+
+
 ignore = [
     "S101", # S101	assert	Use of assert detected
     "RUF001", # ambiguous-unicode-character-string
     "RUF002", # ambiguous-unicode-character-docstring
     "RUF003", # ambiguous-unicode-character-comment
     "TC006", # runtime-cast-value
+    "ARG001",
 ]
 
 [tool.ruff.lint.extend-per-file-ignores]
