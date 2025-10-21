@@ -1,3 +1,4 @@
+import logging
 import random
 import string
 from typing import Any
@@ -49,9 +50,13 @@ class TestCreateInvalid:
         assert error_detail["type"] == expected_error_type, error_detail
 
 
-def test_create_short_url(auth_client: TestClient) -> None:
+def test_create_short_url(
+    caplog: pytest.LogCaptureFixture,
+    auth_client: TestClient,
+) -> None:
+    caplog.set_level(logging.INFO)
     url = app.url_path_for("create_short_url")
-    data: dict[str, str] = ShortUrlCreate(
+    short_url_create = ShortUrlCreate(
         slug="".join(
             random.choices(
                 string.ascii_letters,
@@ -60,7 +65,8 @@ def test_create_short_url(auth_client: TestClient) -> None:
         ),
         description="Some description",
         target_url="https://www.example.com",
-    ).model_dump(mode="json")
+    )
+    data: dict[str, str] = short_url_create.model_dump(mode="json")
     response = auth_client.post(url=url, json=data)
     assert response.status_code == status.HTTP_201_CREATED, response.text
     response_data = response.json()
@@ -70,6 +76,8 @@ def test_create_short_url(auth_client: TestClient) -> None:
         "target_url": response_data["target_url"],
     }
     assert received_values == data, response_data
+    assert "Created short url" in caplog.text
+    assert short_url_create.slug in caplog.text
 
 
 def test_create_short_url_already_exist(
