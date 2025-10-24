@@ -1,4 +1,3 @@
-
 from redis import Redis
 
 from core import config
@@ -18,6 +17,8 @@ def add(a: int, b: int) -> int:
 def main() -> None:
 
     print(redis.ping())
+    print(redis.ping())
+
     redis.set("name", "Alexey")
     redis.set("foo", "bar")
     redis.set("number", "42")
