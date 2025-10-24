@@ -2,6 +2,8 @@
 
 ## Develop
 
+Check GitHub Actions after any push.
+
 Setup:
 
 Right click `url-shortener` -> Mark directory as -> Sources root

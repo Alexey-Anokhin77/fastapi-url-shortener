@@ -3,6 +3,12 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
+    paths:
+      - "url-shortener/**"
+
 jobs:
   lint:
      runs-on: ubuntu-latest
