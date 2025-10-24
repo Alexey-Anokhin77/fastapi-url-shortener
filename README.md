@@ -8,6 +8,7 @@ Setup:
 
 Right click `url-shortener` -> Mark directory as -> Sources root
 
+### Install dependencies
 ### Configure pre-commit
 
 Install pre-commit hook:
@@ -15,11 +16,9 @@ Install pre-commit hook:
 pre-commit install
 ```
 
-### Install
-
-Install packages:
+Install all packages:
 ```shell
-uv install
+uv sync
 ```
 
 
