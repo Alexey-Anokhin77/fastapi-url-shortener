@@ -26,10 +26,13 @@ def check(
     """
     Check if the passed token is valid - exists  or not.
     """
+
     print(
-        f"Token [bold]{token}[/bold], [green]exists[/green]."
-        if tokens.token_exists(token)
-        else f"Token [bold]{token}[/bold] [bold red]does not exists[/bold red].",
+        (
+            f"Token [bold]{token}[/bold], [green]exists[/green]."
+            if tokens.token_exists(token)
+            else f"Token [bold]{token}[/bold] [bold red]does not exists[/bold red]."
+        ),
     )
 
 
