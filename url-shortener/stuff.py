@@ -18,7 +18,6 @@ def main() -> None:
 
     print(redis.ping())
     print(redis.ping())
-    1 + ""
 
     redis.set("name", "Alexey")
     redis.set("foo", "bar")
