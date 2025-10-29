@@ -18,13 +18,13 @@ jobs:
        - uses: actions/setup-python@v6
          with:
            python-version-file: '.python-version'
-       - name: Install Black
-         run: |
-          python -m pip install --upgrade pip
-          pip install "black==25.9.0"
-
-       - name: Black 🖤
-         run: black --check --diff ./
+#       - name: Install Black
+#         run: |
+#          python -m pip install --upgrade pip
+#          pip install "black==25.9.0"
+#
+#       - name: Black 🖤
+#         run: black --check --diff ./
   run-mypy:
     runs-on: ubuntu-latest
     steps:
@@ -36,6 +36,16 @@ jobs:
           enable-cache: true
       - name: Install the project
         run: uv sync --locked --all-extras --dev
+      - name: Run ruff check --diff
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: 'check --diff'
+          version-file: 'pyproject.toml'
+      - name: Run ruff check
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: 'check'
+          version-file: 'pyproject.toml'
       - name: Run mypy
         run: uv run mypy url-shortener
 
