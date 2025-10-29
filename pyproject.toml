@@ -111,18 +111,16 @@ target-version = "py313"
 
 [tool.ruff.lint]
 select = [
-    "ANN", # flake8-annotations (ANN)
     "FAST", # FastAPI (FAST)
-    "I", # isort (I)
-    "F", # Pyflakes (F)
-    "COM", # flake8-commas (COM)
-    "Q", # flake8-quotes (Q)
+    "YTT", # flake8-2020 (YTT)
+    "ANN", # flake8-annotations (ANN)
     # "ASYNC", # flake8-async (ASYNC)
     "S", # flake8-bandit (S)
     "BLE", # flake8-blind-except (BLE)
-    "FBT",  # flake8-boolean-trap (FBT)
-    "B",  # flake8-bugbear (B)
-    "C4", # flake8-comprehensions (C4),
+    "FBT", # flake8-boolean-trap (FBT)
+    "B", # flake8-bugbear (B)
+    "COM", # flake8-commas (COM)
+    "C4", # flake8-comprehensions (C4)
     "DTZ", # flake8-datetimez (DTZ)
     "T10", # flake8-debugger (T10)
     "EM", # flake8-errmsg (EM)
@@ -145,23 +143,24 @@ select = [
     "ARG", # flake8-unused-arguments (ARG)
     "PTH", # flake8-use-pathlib (PTH)
     "FLY", # flynt (FLY)
+    "I", # isort (I)
     "C90", # mccabe (C90)
     "N", # pep8-naming (N)
     "PERF", # Perflint (PERF)
-    "E", # pycodestyle (E)
-    "W", # pycodestyle (W)
+    "E", # pycodestyle Error (E)
+    "W", # pycodestyle Warning (W)
     # "DOC", # pydoclint (DOC)
     # "D", # pydocstyle (D)
+    "F", # Pyflakes (F)
     "PGH", # pygrep-hooks (PGH)
-    "PLC", # Convention (PLC)
-    "PLE", # Error (PLE)
-    "PLR", # Refactor (PLR)
-    "PLW", # Warning (PLW)
+    "PLC", # Pylint Convention (PLC)
+    "PLE", # Pylint Error (PLE)
+    "PLR", # Pylint Refactor (PLR)
+    "PLW", # Pylint Warning (PLW)
     "UP", # pyupgrade (UP)
     "FURB", # refurb (FURB)
     "RUF", # Ruff-specific rules (RUF)
     "TRY", # tryceratops (TRY)
-    # Only ignore variables named "_".
 ]
 
 
@@ -179,6 +178,8 @@ ignore = [
     "T20", # flake8-print (T20)
 ]
 "url-shortener/testing/**/*.py" = ["S311"]
+
+"**/confest.py" = ["S311"]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
