@@ -43,4 +43,3 @@ jobs:
           version-file: 'pyproject.toml'
       - name: Run mypy
         run: uv run mypy url-shortener
-
