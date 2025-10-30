@@ -1,5 +1,4 @@
-__all__ = ("ShortUrlAlreadyExistsError",
- "storage")
+__all__ = ("ShortUrlAlreadyExistsError", "storage")
 
 import logging
 
@@ -10,7 +9,7 @@ from core import config
 from schemas.short_url import (
     ShortUrl,
     ShortUrlCreate,
-ShortUrlPartialUpdate,
+    ShortUrlPartialUpdate,
     ShortUrlUpdate,
 )
 
