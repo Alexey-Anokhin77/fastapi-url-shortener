@@ -1,4 +1,7 @@
-__all__ = ("ShortUrlAlreadyExistsError", "storage")
+__all__ = (
+    "ShortUrlAlreadyExistsError",
+    "storage",
+)
 
 import logging
 
@@ -96,11 +99,7 @@ class ShortUrlsStorage(BaseModel):
         short_url_in: ShortUrlUpdate,
     ) -> ShortUrl:
         for field_name, value in short_url_in:
-            setattr(
-                short_url,
-                field_name,
-                value,
-            )
+            setattr(short_url, field_name, value)
         self.save_short_url(short_url)
         return short_url
 
