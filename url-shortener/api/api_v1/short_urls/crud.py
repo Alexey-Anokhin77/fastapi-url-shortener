@@ -1,4 +1,5 @@
-__all__ = ("ShortUrlAlreadyExistsError", "storage")
+__all__ = ("ShortUrlAlreadyExistsError",
+ "storage")
 
 import logging
 
@@ -9,7 +10,7 @@ from core import config
 from schemas.short_url import (
     ShortUrl,
     ShortUrlCreate,
-    ShortUrlPartialUpdate,
+ShortUrlPartialUpdate,
     ShortUrlUpdate,
 )
 
@@ -17,7 +18,7 @@ log = logging.getLogger(__name__)
 
 
 redis = Redis(
-host=config.REDIS_HOST,
+    host=config.REDIS_HOST,
     port=config.REDIS_PORT,
     db=config.REDIS_DB_SHORT_URLS,
     decode_responses=True,
