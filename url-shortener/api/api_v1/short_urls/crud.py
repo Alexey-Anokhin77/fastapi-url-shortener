@@ -1,7 +1,4 @@
-__all__ = (
-    "ShortUrlAlreadyExistsError",
-    "storage",
-)
+__all__ = ("ShortUrlAlreadyExistsError", "storage")
 
 import logging
 
@@ -20,7 +17,7 @@ log = logging.getLogger(__name__)
 
 
 redis = Redis(
-    host=config.REDIS_HOST,
+host=config.REDIS_HOST,
     port=config.REDIS_PORT,
     db=config.REDIS_DB_SHORT_URLS,
     decode_responses=True,
@@ -101,7 +98,7 @@ class ShortUrlsStorage(BaseModel):
         for field_name, value in short_url_in:
             setattr(
                 short_url,
-                field_name
+                field_name,
                 value,
             )
         self.save_short_url(short_url)
