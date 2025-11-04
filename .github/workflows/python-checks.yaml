@@ -14,6 +14,23 @@ jobs:
   run-checks:
      runs-on: ubuntu-latest
      steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+         python-version-file: '.python-version'
+      - name: Install Black
+        run: |
+          python -m pip install --upgrade pip
+          pip install "black==25.9.0"
+      - name: Black 🖤
+        run: black --check --diff ./
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install the project
+        run: uv sync --locked --all-extras --dev
       - name: Run ruff check --diff
         uses: astral-sh/ruff-action@v3
         with:
@@ -31,6 +48,7 @@ jobs:
     needs:
       - run-checks
     steps:
+
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v6
         with:
