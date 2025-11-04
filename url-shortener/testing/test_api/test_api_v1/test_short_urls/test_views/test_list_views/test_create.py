@@ -44,7 +44,7 @@ class TestCreateInvalid:
             json=create_data,
         )
         assert (
-            response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+            response.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
         ), response.text
         error_detail = response.json()["detail"][0]
         assert error_detail["type"] == expected_error_type, error_detail
