@@ -1,8 +1,8 @@
-# Python-generated files
 __pycache__/
+dist/
+# Python-generated files
 *.py[oc]
 build/
-dist/
 wheels/
 *.egg-info
 
@@ -179,3 +179,4 @@ cython_debug/
 .pypirc
 
 short-urls.json
+.secrets
