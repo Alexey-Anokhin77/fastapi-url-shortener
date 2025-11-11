@@ -29,7 +29,7 @@ class RedisUsersHelper(AbstractUsersHelpers):
 
 
 redis_users = RedisUsersHelper(
-    host=config.REDIS_HOST,
-    port=config.REDIS_PORT,
+    host=config.settings.redis.connection.host,
+    port=config.settings.redis.connection.port,
     db=config.REDIS_DB_USERS,
 )
