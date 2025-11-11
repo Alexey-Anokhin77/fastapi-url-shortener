@@ -1,6 +1,6 @@
 import logging
-from os import getenv
 from pathlib import Path
+
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings
 
@@ -29,19 +29,21 @@ REDIS_DB_SHORT_URLS = 3
 REDIS_TOKENS_SET_NAME = "tokens"
 REDIS_SHORT_URLS_HASH_NAME = "short-urls"
 
+
 class LoggingConfig(BaseModel):
     log_level: int = logging.INFO
     log_format: str = LOG_FORMAT
-    date_format: str ="%Y-%m-%d %H:%M:%S"
-
+    date_format: str = "%Y-%m-%d %H:%M:%S"
 
 
 class RedisConnectionConfig(BaseModel):
     host: str = "localhost"
     port: int = 6379
 
+
 class RedisConfig(BaseModel):
     connection: RedisConnectionConfig = RedisConnectionConfig()
+
 
 class Settings(BaseSettings):
     logging: LoggingConfig = LoggingConfig()
@@ -50,4 +52,3 @@ class Settings(BaseSettings):
 
 # noinspection PyArgumentList
 settings = Settings()
-
