@@ -21,13 +21,22 @@ LOG_FORMAT: str = (
 #     "sam": "password",
 #     "bob": "qwerty",
 # }
-REDIS_DB = 0
-REDIS_DB_TOKENS = 1
-REDIS_DB_USERS = 2
-REDIS_DB_SHORT_URLS = 3
+
 
 REDIS_TOKENS_SET_NAME = "tokens"
 REDIS_SHORT_URLS_HASH_NAME = "short-urls"
+
+
+class RedisDbConfig(BaseModel):
+    defult: int = 0
+    redis_db_tokens: int = 1
+    redis_db_users: int = 2
+    redis_db_short_urls: int = 3
+
+
+class RedisNamesConfig(BaseModel):
+    tokens_set: str = "tokens"
+    short_urls_hash_name: str = "short_urls_hash_name"
 
 
 class LoggingConfig(BaseModel):
@@ -43,6 +52,8 @@ class RedisConnectionConfig(BaseModel):
 
 class RedisConfig(BaseModel):
     connection: RedisConnectionConfig = RedisConnectionConfig()
+    database: RedisDbConfig = RedisDbConfig()
+    names: RedisNamesConfig = RedisNamesConfig()
 
 
 class Settings(BaseSettings):
