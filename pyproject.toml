@@ -14,6 +14,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "black>=25.11.0",
     "coverage>=7.10.6",
     "httpx>=0.28.1",
     "mypy>=1.16.1",
@@ -23,7 +24,7 @@ dev = [
     "pytest>=8.4.1",
     "pytest-cov>=7.0.0",
     "ruff>=0.12.5",
-    "types-redis",  # для разработки и type checking
+    "types-redis", # для разработки и type checking
 ]
 
 
