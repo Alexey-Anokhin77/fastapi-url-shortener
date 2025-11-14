@@ -28,7 +28,7 @@ REDIS_SHORT_URLS_HASH_NAME = "short-urls"
 
 
 class RedisDbConfig(BaseModel):
-    defult: int = 0
+    default: int = 0
     redis_db_tokens: int = 1
     redis_db_users: int = 2
     redis_db_short_urls: int = 3
