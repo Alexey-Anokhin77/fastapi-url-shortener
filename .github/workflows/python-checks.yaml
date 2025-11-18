@@ -15,7 +15,7 @@ jobs:
      runs-on: ubuntu-latest
      steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         with:
          python-version-file: '.python-version'
       - name: Install Black
@@ -59,7 +59,7 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         with:
          python-version-file: '.python-version'
       - name: Setup uv
