@@ -45,6 +45,7 @@ jobs:
         run: uv run mypy url-shortener
   run-tests:
     runs-on: ubuntu-latest
+    container: node:20-bookworm-slim
     needs:
       - run-checks
     services:
@@ -56,17 +57,16 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports:
-          # Maps port 6379 on service container to the host
-          - 6379:6379
+
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v6
         with:
-         python-version-file: '.python-version'
+          python-version-file: '.python-version'
       - name: Setup uv
         uses: astral-sh/setup-uv@v5
         with:
+          pyproject-file: 'pyproject.toml'
           enable-cache: true
       - name: Install dependencies
         run: uv sync --locked --all-extras --dev
@@ -74,4 +74,5 @@ jobs:
         run: uv run pytest
         env:
           TESTING: 1
-          REDIS_PORT: 6379
+          URL_SHORTENER__REDIS__CONNECTION__HOST: redis
+          URL_SHORTENER__REDIS__CONNECTION__PORT: 6379
